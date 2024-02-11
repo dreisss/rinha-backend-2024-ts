@@ -1,0 +1,21 @@
+{
+  "name": "rinha-backend-2024-ts",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot src/http/server.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "@types/bun": "latest",
+    "prisma": "^5.9.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.9.1",
+    "fastify": "^4.26.0",
+    "zod": "^3.22.4"
+  }
+}
