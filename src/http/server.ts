@@ -1,10 +1,10 @@
 import fastify from 'fastify'
 
+import { createTransaction } from './routes/create-transaction'
+
 const app = fastify()
 
-app.post('/clientes/:id/transacoes', (request, reply) => {
-  return reply.send()
-})
+app.register(createTransaction)
 
 app.listen({ port: 3333 }, () => {
   console.log('HTTP server running!')
