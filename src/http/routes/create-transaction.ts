@@ -16,14 +16,11 @@ export async function createTransaction(app: FastifyInstance) {
     })
 
     const { clientId } = createTransactionParams.parse(request.params)
-
-    let body
-    try {
-      body = createTransactionBody.parse(request.body)
-    } catch {
-      return reply.status(400).send()
-    }
-    const { valor: value, tipo: type, descricao: description } = body
+    const {
+      valor: value,
+      tipo: type,
+      descricao: description,
+    } = createTransactionBody.parse(request.body)
 
     const client = await prisma.client.findUnique({
       where: {
