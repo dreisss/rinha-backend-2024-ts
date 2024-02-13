@@ -6,7 +6,7 @@ import { prisma } from '../../lib/prisma'
 export async function createTransaction(app: FastifyInstance) {
   app.post('/clientes/:clientId/transacoes', async (request, reply) => {
     const createTransactionParams = z.object({
-      clientId: z.number(),
+      clientId: z.coerce.number(),
     })
 
     const createTransactionBody = z.object({
@@ -61,7 +61,7 @@ export async function createTransaction(app: FastifyInstance) {
 
     return reply.send({
       limite: limit,
-      saldo: balance,
+      saldo: balance - value,
     })
   })
 }

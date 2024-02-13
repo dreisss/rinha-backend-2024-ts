@@ -6,7 +6,7 @@ import { prisma } from '../../lib/prisma'
 export async function getStatement(app: FastifyInstance) {
   app.get('/clientes/:clientId/extrato', async (request, reply) => {
     const createTransactionParams = z.object({
-      clientId: z.number(),
+      clientId: z.coerce.number(),
     })
 
     const { clientId } = createTransactionParams.parse(request.params)
