@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "bun run --hot src/http/server.ts"
   },
+  "prisma": {
+    "seed": "bun run prisma/seed/init.ts"
+  },
   "devDependencies": {
     "@biomejs/biome": "^1.5.3",
     "@types/bun": "latest",
