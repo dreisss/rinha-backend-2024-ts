@@ -1,0 +1,8 @@
+.git
+.gitignore
+.env.example
+node_modules
+biome.json
+docker-compose.yml
+license
+readme.md

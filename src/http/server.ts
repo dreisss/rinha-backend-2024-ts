@@ -1,13 +1,24 @@
+import { z } from 'zod'
+import { env } from 'bun'
 import fastify from 'fastify'
 
 import { createTransaction } from './routes/create-transaction'
 import { getStatement } from './routes/get-statement'
+
+const envVariables = z.object({
+  // biome-ignore lint/style/useNamingConvention: env variables
+  HTTP_PORT: z.coerce.number().default(3000),
+  // biome-ignore lint/style/useNamingConvention: env variables
+  DATABASE_URL: z.string().url(),
+})
+
+const { HTTP_PORT } = envVariables.parse(env)
 
 const app = fastify()
 
 app.register(createTransaction)
 app.register(getStatement)
 
-app.listen({ port: 3333 }, () => {
-  console.log('HTTP server running!')
+app.listen({ port: HTTP_PORT }, () => {
+  console.log(`HTTP server running at localhost:${HTTP_PORT}!`)
 })
