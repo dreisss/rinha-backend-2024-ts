@@ -28,37 +28,41 @@ export async function createTransaction(app: FastifyInstance) {
       },
     })
 
-    if (!client) {
-      return reply.status(404).send()
-    }
+    if (!client) return reply.status(404).send()
 
     const { balance, limit } = client
+    let newBalance
 
-    if (type === 'd' && balance - value < limit) {
-      return reply.status(422).send()
+    switch (type) {
+      case 'c':
+        newBalance = balance + value
+        break
+      case 'd':
+        newBalance = balance - value
+
+        if (balance + limit < value) return reply.status(422).send()
+        break
     }
-
-    await prisma.transaction.create({
-      data: {
-        value,
-        type,
-        description,
-        clientId,
-      },
-    })
 
     await prisma.client.update({
       where: {
         id: clientId,
       },
       data: {
-        balance: balance - value,
+        balance: newBalance,
+        transactions: {
+          create: {
+            value,
+            type,
+            description,
+          },
+        },
       },
     })
 
     return reply.send({
       limite: limit,
-      saldo: balance - value,
+      saldo: newBalance,
     })
   })
 }

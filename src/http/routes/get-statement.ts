@@ -17,9 +17,7 @@ export async function getStatement(app: FastifyInstance) {
       },
     })
 
-    if (!client) {
-      return reply.status(404).send()
-    }
+    if (!client) return reply.status(404).send()
 
     const { balance, limit } = client
 

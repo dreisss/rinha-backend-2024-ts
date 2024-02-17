@@ -3,7 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun run --hot src/http/server.ts"
+    "dev": "bun run --hot src/http/server.ts",
+    "serve": "bun run src/http/server.ts"
   },
   "prisma": {
     "seed": "bun run prisma/seed/init.ts"
