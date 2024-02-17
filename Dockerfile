@@ -1,11 +1,12 @@
-FROM oven/bun:1 
+FROM imbios/bun-node
 WORKDIR /app
 
-COPY . .
-
+COPY bun.lockb .
+COPY package.json . 
 RUN bun install --frozen-lockfile --production
+
+COPY . .
 RUN bun prisma generate
-RUN bun run src/http/server.ts
 
 EXPOSE 3000
-ENTRYPOINT [ "server" ]
+ENTRYPOINT [ "bun", "serve" ]

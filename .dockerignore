@@ -2,7 +2,11 @@
 .gitignore
 .env.example
 node_modules
-biome.json
+
+.dockerignore
+Dockerfile
 docker-compose.yml
+
 license
 readme.md
+biome.json
