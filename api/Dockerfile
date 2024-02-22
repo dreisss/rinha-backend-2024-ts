@@ -1,4 +1,4 @@
-FROM imbios/bun-node
+FROM imbios/bun-node:1.0.26-21-alpine
 WORKDIR /app
 
 COPY bun.lockb .

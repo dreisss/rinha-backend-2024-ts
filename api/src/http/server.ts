@@ -14,11 +14,13 @@ const envVariables = z.object({
 
 const { HTTP_PORT } = envVariables.parse(env)
 
-const app = fastify()
+const app = fastify({
+  logger: true,
+})
 
 app.register(createTransaction)
 app.register(getStatement)
 
 app.listen({ port: HTTP_PORT }, () => {
-  console.log(`HTTP server running at localhost:${HTTP_PORT}!`)
+  console.log(`HTTP server running at port ${HTTP_PORT}.`)
 })

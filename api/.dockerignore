@@ -5,7 +5,6 @@ node_modules
 
 .dockerignore
 Dockerfile
-docker-compose.yml
 
 license
 readme.md

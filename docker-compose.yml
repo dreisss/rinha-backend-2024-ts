@@ -21,13 +21,13 @@ services:
       - HTTP_PORT=3000
       - DATABASE_URL=postgres://docker:docker@localhost:5432/rinha_db
     ports:
-      - "8000:3000"
+      - "3000:3000"
 
   api02:
     <<: *api
     hostname: api02
     ports:
-      - "8001:3000"
+      - "3001:3000"
 
   postgres:
     image: bitnami/postgresql:latest
